@@ -1,0 +1,19 @@
+<div *ngIf="movie">
+  <h5>{{ movie.original_title | uppercase }}</h5>
+  <ul>
+    <li>Rating: {{movie.vote_average}}</li>
+    <li>Runtime: {{movie.runtime}} min</li>
+  </ul>
+  <p [innerHTML]="movie.overview"></p>
+</div>
+
+<ol>
+  <li *ngFor="let comment of comments">
+    <h5>{{comment.author}}</h5>
+    <p [innerHTML]="comment.content"></p>
+  </li>
+</ol>
+
+<input [(ngModel)]="newComment.author" placeholder="Author...">
+<input [(ngModel)]="newComment.content" placeholder="Content...">
+<button (click)="submitComment()">Submit</button>
