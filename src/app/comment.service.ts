@@ -4,16 +4,22 @@ import { Comment } from './model/comment';
 @Injectable()
 export class CommentService {
 
-  comments: Comment[] = [];
+  comments: { [movieId: number]: Comment[] } = [];
 
   constructor() { }
 
-  public saveComment(comment: Comment) {
-    this.comments.push(comment);
+  public saveComment(movieId: number, comment: Comment) {
+    if (!this.comments[movieId]) {
+      this.comments[movieId] = [];
+    }
+    this.comments[movieId].push(comment);
   }
 
-  public getComments(): Comment[] {
-    return this.comments;
+  public getComments(movieId: number): Comment[] {
+    if (!this.comments[movieId]) {
+      this.comments[movieId] = [];
+    }
+    return this.comments[movieId];
   }
 
 }

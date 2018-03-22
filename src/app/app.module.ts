@@ -8,17 +8,23 @@ import { MovieDetailsComponent } from './movie-details/movie-details.component';
 import { CommentService } from './comment.service';
 import { MovieService } from './movie.service';
 import { HttpClientModule } from '@angular/common/http';
+import { MovieEntryComponent } from './movie-entry/movie-entry.component';
+import { MovieListComponent } from './movie-list/movie-list.component';
+import { AppRoutingModule } from './/app-routing.module';
 
 
 @NgModule({
   declarations: [
     AppComponent,
-    MovieDetailsComponent
+    MovieDetailsComponent,
+    MovieEntryComponent,
+    MovieListComponent
   ],
   imports: [
     BrowserModule,
     FormsModule,
-    HttpClientModule
+    HttpClientModule,
+    AppRoutingModule
   ],
   providers: [
     CommentService,

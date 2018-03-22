@@ -1,14 +1,13 @@
 import { Component, OnInit } from '@angular/core';
-import { Movie } from './model/movie';
-import { MovieService } from './movie.service';
+import { Movie } from '../model/movie';
+import { MovieService } from '../movie.service';
 
 @Component({
-  selector: 'app-root',
-  templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css']
+  selector: 'app-movie-list',
+  templateUrl: './movie-list.component.html',
+  styleUrls: ['./movie-list.component.css']
 })
-export class AppComponent implements OnInit {
-  title = 'app';
+export class MovieListComponent implements OnInit {
 
   movies: Movie[] = [];
 

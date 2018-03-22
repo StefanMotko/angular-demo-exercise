@@ -1,0 +1,9 @@
+<h5>
+  <a routerLink="/movies/{{movie.id}}">
+    {{ movie.original_title | uppercase }}
+  </a>
+</h5>
+<ul>
+  <li>Rating: {{movie.vote_average}}</li>
+</ul>
+<p [innerHTML]="movie.overview"></p>

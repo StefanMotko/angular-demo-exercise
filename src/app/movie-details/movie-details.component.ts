@@ -3,6 +3,7 @@ import { Comment } from '../model/comment';
 import { CommentService } from '../comment.service';
 import { Movie } from '../model/movie';
 import { MovieService } from '../movie.service';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-movie-details',
@@ -10,6 +11,8 @@ import { MovieService } from '../movie.service';
   styleUrls: ['./movie-details.component.css']
 })
 export class MovieDetailsComponent implements OnInit {
+
+  movieId: number;
 
   movie: Movie;
 
@@ -19,23 +22,26 @@ export class MovieDetailsComponent implements OnInit {
 
 
   constructor(
+    private route: ActivatedRoute,
     private commentService: CommentService, 
     private movieService: MovieService
   ) {
   }
 
   ngOnInit() {
-    this.comments = this.commentService.getComments();
+    this.movieId = +this.route.snapshot.paramMap.get('id');
+    this.comments = this.commentService.getComments(this.movieId);
     this.getMovie();
   }
 
   submitComment() {
-    this.commentService.saveComment(this.newComment);
+    this.commentService.saveComment(this.movieId, this.newComment);
     this.newComment = new Comment();
   }
 
   getMovie() {
-    this.movieService.getMovieDetail(0).subscribe( movie => { this.movie = movie; } );
+    this.movieService.getMovieDetail(this.movieId)
+    .subscribe( movie => { this.movie = movie; } );
   }
 
 }
